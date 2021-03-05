@@ -4,6 +4,7 @@ package com.imooc.controller.center;
 import com.imooc.controller.BaseController;
 import com.imooc.pojo.Users;
 import com.imooc.pojo.bo.center.CenterUserBO;
+import com.imooc.pojo.vo.UsersVO;
 import com.imooc.resource.FileUpload;
 import com.imooc.service.center.CenterUserService;
 import com.imooc.utils.CookieUtils;
@@ -132,11 +133,15 @@ public class CenterUserController extends BaseController {
         //更新用户头像到数据库
         Users userResult = centerUserService.updateUserFace(userId,finalUserFaceUrl);
 
-        userResult = setNullProperty(userResult);
+        //userResult = setNullProperty(userResult);
 
-        CookieUtils.setCookie(request, response, "user", JsonUtils.objectToJson(userResult), true);
+        // 后需要改，增加令牌token，会整合进redis，分布式会话
+        UsersVO usersVO = conventUserVO(userResult);
 
-        //TODO 后需要改，增加令牌token，会整合进redis，分布式会话
+        CookieUtils.setCookie(request, response, "user", JsonUtils.objectToJson(usersVO), true);
+
+
+
 
         return IMOOCJSONResult.ok();
 
@@ -160,11 +165,15 @@ public class CenterUserController extends BaseController {
         }
 
         Users userResult = centerUserService.updateUserInfo(userId, centerUserBO);
-        userResult = setNullProperty(userResult);
+        //userResult = setNullProperty(userResult);
 
-        CookieUtils.setCookie(request, response, "user", JsonUtils.objectToJson(userResult), true);
+        // 后需要改，增加令牌token，会整合进redis，分布式会话
+        UsersVO usersVO = conventUserVO(userResult);
 
-        //TODO 后需要改，增加令牌token，会整合进redis，分布式会话
+        CookieUtils.setCookie(request, response, "user", JsonUtils.objectToJson(usersVO), true);
+
+
+
 
         return IMOOCJSONResult.ok();
 

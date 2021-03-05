@@ -4,6 +4,7 @@ com/imooc/config/Swagger2.class
 com/imooc/controller/center/MyCommentsController.class
 com/imooc/controller/center/CenterController.class
 com/imooc/controller/center/CenterUserController.class
+com/imooc/controller/interceptor/UserTokenInterceptor.class
 com/imooc/controller/ShopcartController.class
 com/imooc/WarStarterApplication.class
 com/imooc/config/CorsConfig.class
